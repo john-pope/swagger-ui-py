@@ -49,7 +49,14 @@
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl
         ],
-        layout: "StandaloneLayout"
+        layout: "StandaloneLayout",
+        {% for key, value in docs_config.items() %}
+          {% if value == none %}
+            "{{key}}": null,
+          {% else %}
+            "{{key}}": "{{value}}",
+          {% endif %}
+        {% endfor %}
       })
       // End Swagger UI call region
 
